@@ -199,32 +199,52 @@ export default function About(props) {
             </div>
           </div>
         </div>
-      </div>
-
-      <div
-        id="canNotCopy"
-        className="card container my-5"
-        style={{
-          backgroundColor: props.mode === "dark" ? "#042743" : "white",
-          color: props.mode === "light" ? "black" : "white",
-          borderColor: props.mode === "light" ? "rgba(0, 0, 0, 0.175)" : "white"
-        }}
-      >
         <div
-          className="card-body">
-          <h3>You can't copy this!!</h3>
-          <p>
-            The <code>You can't copy this</code> feature in TextUtils adds an
-            extra layer of protection to your content by preventing unauthorized
-            copying. It intercepts copy events on specified text elements and
-            replaces the copied content with a custom message, ensuring your
-            original work remains secure. This feature is especially useful for
-            safeguarding intellectual property, preventing plagiarism, or
-            controlling the distribution of sensitive information, making it
-            ideal for bloggers, educators, and content creators.
-          </p>
+          id="canNotCopy"
+          className="card container my-5"
+          style={{
+            backgroundColor: props.mode === "dark" ? "#042743" : "white",
+            color: props.mode === "light" ? "black" : "white",
+            borderColor:
+              props.mode === "light" ? "rgba(0, 0, 0, 0.175)" : "white",
+          }}
+        >
+          <div className="card-body">
+            <h3>You can't copy this !!</h3>
+            <p>
+              The You can't copy this feature in TextUtils adds an extra layer
+              of protection to your content by preventing unauthorized copying.
+              It intercepts copy events on specified text elements and replaces
+              the copied content with a custom message, ensuring your original
+              work remains secure. This feature is especially useful for
+              safeguarding intellectual property, preventing plagiarism, or
+              controlling the distribution of sensitive information, making it
+              ideal for bloggers, educators, and content creators.
+            </p>
+            <p>
+              <strong>
+                "If you try to copy the above content then you will get the
+                special gift from my side whenever you paste it."
+              </strong>
+              -<code>Try it now !!</code>
+            </p>
+          </div>
         </div>
       </div>
+      <footer
+        className="bg-body-tertiary text-center text-lg-start"
+        data-bs-theme={props.mode}
+      >
+        <div
+          className="text-center p-3"
+          style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
+        >
+          <p style={{ color: props.mode === "light" ? "black" : "white", marginBottom: "0px" }}>© 2024 Copyright</p>
+          <p className="text-body m-0">
+            Design and Maintained by <strong>Ayush Rathi</strong>
+          </p>
+        </div>
+      </footer>
     </>
   );
 }

@@ -115,7 +115,7 @@ export default function TextForm(props) {
         className="container my-3"
         style={{ color: props.mode === "light" ? "black" : "white" }}
       >
-        <h1>{props.heading}</h1>
+        <h1 className="font">{props.heading}</h1>
         <div className="mb-3 row">
           <textarea
             className={`form-control ${
@@ -168,9 +168,9 @@ export default function TextForm(props) {
             <div className="col">
               <button
                 className="btn btn-primary mx-2 my-1"
-                onClick={handleLoClick}
+                onClick={handleEmailExtractClick}
               >
-                Convert to LowerCase
+                Email Extractor
               </button>
             </div>
             <div className="col">
@@ -192,9 +192,19 @@ export default function TextForm(props) {
             <div className="col">
               <button
                 className="btn btn-primary mx-2 my-1"
-                onClick={handleEmailExtractClick}
+                onClick={handleLoClick}
               >
-                Email Extractor
+                Convert to LowerCase
+              </button>
+            </div>
+           
+           
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleCopyClick}
+              >
+                Copy Text
               </button>
             </div>
             <div className="col">
@@ -205,14 +215,7 @@ export default function TextForm(props) {
                 Phone No. Extractor
               </button>
             </div>
-            <div className="col">
-              <button
-                className="btn btn-primary mx-2 my-1"
-                onClick={handleCopyClick}
-              >
-                Copy Text
-              </button>
-            </div>
+            
             <div className="col">
               <button
                 className="btn btn-primary mx-2 my-1"

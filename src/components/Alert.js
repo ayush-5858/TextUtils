@@ -20,15 +20,19 @@ export default function Alert(props) {
           className={`alert alert-${props.alert.type} d-flex align-items-center m-0`}
           role="alert"
         >
-          <svg
-            className="bi flex-shrink-0 me-2"
-            role="img"
-            aria-label="Success:"
-            style={{ width: "24px", height: "24px" }}
-          >
-            <use href={`#${props.alert.type}`} />
-          </svg>
-          <strong>{capitalize(props.alert.type)}</strong>: {props.alert.msg}
+          <div>
+            <svg
+              className="bi flex-shrink-0 me-2"
+              role="img"
+              aria-label="Success:"
+              style={{ width: "24px", height: "24px" }}
+            >
+              <use href={`#${props.alert.type}`} />
+            </svg>
+          </div>
+          <div>
+            <strong>{capitalize(props.alert.type)}</strong>: {props.alert.msg}
+          </div>
         </div>
       </>
     )

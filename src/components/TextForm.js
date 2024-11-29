@@ -21,7 +21,7 @@ export default function TextForm(props) {
   };
   const validateInput = (input, showAlert) => {
     if (input.trim().length === 0) {
-      showAlert('Please enter something in the input!', 'warning');
+      showAlert("Please enter something in the input!", "warning");
       return false; // Input is invalid
     }
     return true; // Input is valid
@@ -31,36 +31,38 @@ export default function TextForm(props) {
     if (!validateInput(inputText, props.showAlert)) return;
     let UpperText = inputText.toUpperCase();
     setOutputText(UpperText);
-    props.showAlert('Text has been successfully uppercased.', 'success')
+    props.showAlert("Text has been successfully uppercased.", "success");
   };
   const handleLoClick = () => {
     if (!validateInput(inputText, props.showAlert)) return;
     let LowerText = inputText.toLowerCase();
     setOutputText(LowerText);
-    props.showAlert('Text has been successfully lowercased.', 'success')
+    props.showAlert("Text has been successfully lowercased.", "success");
   };
   const handleLengthClick = () => {
     if (!validateInput(inputText, props.showAlert)) return;
     let LengthOfText = inputText.length;
     setOutputText(`Lenght of the String is ${LengthOfText}`);
-    props.showAlert('Text length has been measured successfully.', 'success')
+    props.showAlert("Text length has been measured successfully.", "success");
   };
   const handleTrimClick = () => {
     if (!validateInput(inputText, props.showAlert)) return;
     // Regular Expression concept in JS is used
     let extraSpace = inputText.split(/[ ]+/);
     setOutputText(extraSpace.join(" ").trim());
-    props.showAlert('Extra spaces have been successfully removed from the text.', 'success')
+    props.showAlert(
+      "Extra spaces have been successfully removed from the text.",
+      "success"
+    );
   };
   const handleClearClick = () => {
-    if (!validateInput(inputText, props.showAlert) && outputText.length === 0){
+    if (!validateInput(inputText, props.showAlert) && outputText.length === 0) {
       return;
-    }
-    else{
-    let inputtext = ""
-    setOutputText(inputtext);
-    setInputText(inputtext);
-    props.showAlert('The text has been cleared successfully.', 'success')
+    } else {
+      let inputtext = "";
+      setOutputText(inputtext);
+      setInputText(inputtext);
+      props.showAlert("The text has been cleared successfully.", "success");
     }
   };
   const handleCopyClick = () => {
@@ -68,10 +70,10 @@ export default function TextForm(props) {
     navigator.clipboard
       .writeText(outputText)
       .then(() => {
-        props.showAlert('The text has been copied successfully.', 'success')
+        props.showAlert("The text has been copied successfully.", "success");
       })
       .catch((err) => {
-        props.showAlert('Fail to copy text.', 'warning')
+        props.showAlert("Fail to copy text.", "warning");
         console.error("Fail to copy text: ", err);
       });
 
@@ -86,10 +88,10 @@ export default function TextForm(props) {
     const extractedEmails = inputText.match(emailRegex);
     if (!extractedEmails) {
       setOutputText("No Email Found");
-      props.showAlert('No Email is found in this text.', 'warning')
+      props.showAlert("No Email is found in this text.", "warning");
     } else {
       setOutputText(extractedEmails.join(", "));
-      props.showAlert('Email is found successfully in this text.', 'success')
+      props.showAlert("Email is found successfully in this text.", "success");
     }
   };
   const handlePhoneExtractClick = () => {
@@ -98,19 +100,29 @@ export default function TextForm(props) {
     const extractedNumbers = inputText.match(phoneRegex);
     if (!extractedNumbers) {
       setOutputText("No Phone No. Found");
-      props.showAlert('No phone number is found in this text.', 'warning')
+      props.showAlert("No phone number is found in this text.", "warning");
     } else {
       setOutputText(extractedNumbers.join(", "));
-      props.showAlert('Phone number is found successfully in this text.', 'success')
+      props.showAlert(
+        "Phone number is found successfully in this text.",
+        "success"
+      );
     }
   };
   return (
     <>
-      <div className="container my-3" style={{color: props.mode === "light" ? "black" : "white"}}>
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "light" ? "black" : "white" }}
+      >
         <h1>{props.heading}</h1>
         <div className="mb-3 row">
           <textarea
-            className={`form-control ${props.mode === "light" ? "custom-placeholder-light" : "custom-placeholder-dark"}`}
+            className={`form-control ${
+              props.mode === "light"
+                ? "custom-placeholder-light"
+                : "custom-placeholder-dark"
+            }`}
             id="exampleFormControlTextarea1"
             rows="16"
             autoFocus
@@ -121,11 +133,15 @@ export default function TextForm(props) {
               width: "49%",
               marginRight: "20px",
               backgroundColor: props.mode === "dark" ? "#3c6383" : "white",
-              color: props.mode === "light" ? "black" : "white"
+              color: props.mode === "light" ? "black" : "white",
             }}
           ></textarea>
           <textarea
-            className={`form-control ${props.mode === "light" ? "custom-placeholder-light" : "custom-placeholder-dark"}`}
+            className={`form-control ${
+              props.mode === "light"
+                ? "custom-placeholder-light"
+                : "custom-placeholder-dark"
+            }`}
             id="exampleFormControlTextarea2"
             rows="16"
             placeholder="Output appears here..."
@@ -134,53 +150,78 @@ export default function TextForm(props) {
             style={{
               width: "49%",
               backgroundColor: props.mode === "dark" ? "#3c6383" : "white",
-              color: props.mode === "light" ? "black" : "white"
+              color: props.mode === "light" ? "black" : "white",
             }}
           ></textarea>
         </div>
-        <div className="mx-auto">
-          <button className="btn btn-primary mx-2 my-1" onClick={handleUpClick}>
-            Convert to UpperCase
-          </button>
-          <button className="btn btn-primary mx-2 my-1" onClick={handleLoClick}>
-            Convert to LowerCase
-          </button>
-          <button
-            className="btn btn-primary mx-2 my-1"
-            onClick={handleLengthClick}
-          >
-            Length of String
-          </button>
-          <button
-            className="btn btn-primary mx-2 my-1"
-            onClick={handleTrimClick}
-          >
-            Remove Extra Space
-          </button>
-          <button
-            className="btn btn-primary mx-2 my-1"
-            onClick={handleEmailExtractClick}
-          >
-            Email Extractor
-          </button>
-          <button
-            className="btn btn-primary mx-2 my-1"
-            onClick={handlePhoneExtractClick}
-          >
-            Phone No. Extractor
-          </button>
-          <button
-            className="btn btn-primary mx-2 my-1"
-            onClick={handleCopyClick}
-          >
-            Copy Text
-          </button>
-          <button
-            className="btn btn-primary mx-2 my-1"
-            onClick={handleClearClick}
-          >
-            Clear Text
-          </button>
+
+        <div className="container text-center">
+          <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleUpClick}
+              >
+                Convert to UpperCase
+              </button>
+            </div>
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleLoClick}
+              >
+                Convert to LowerCase
+              </button>
+            </div>
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleLengthClick}
+              >
+                Length of String
+              </button>
+            </div>
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleTrimClick}
+              >
+                Remove Extra Space
+              </button>
+            </div>
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleEmailExtractClick}
+              >
+                Email Extractor
+              </button>
+            </div>
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handlePhoneExtractClick}
+              >
+                Phone No. Extractor
+              </button>
+            </div>
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleCopyClick}
+              >
+                Copy Text
+              </button>
+            </div>
+            <div className="col">
+              <button
+                className="btn btn-primary mx-2 my-1"
+                onClick={handleClearClick}
+              >
+                Clear Text
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </>

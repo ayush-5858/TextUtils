@@ -14,3 +14,28 @@
   color: #302929;
   /* Dark mode placeholder text color */
 }
+
+.col{
+  width: fit-content;
+  margin: 0px;
+  padding: 0px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .form-control{
+    width: 48% !important;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .form-control{
+    width: 100% !important;
+    margin-bottom: 10px;
+  }
+}
+
+@media only screen and (max-width: 425px) {
+  .col{
+    width: auto;
+  }
+}

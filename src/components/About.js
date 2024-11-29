@@ -201,7 +201,7 @@ export default function About(props) {
         </div>
         <div
           id="canNotCopy"
-          className="card container my-5"
+          className="card my-5"
           style={{
             backgroundColor: props.mode === "dark" ? "#042743" : "white",
             color: props.mode === "light" ? "black" : "white",

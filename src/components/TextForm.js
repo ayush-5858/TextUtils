@@ -9,9 +9,9 @@ export default function TextForm(props) {
   const handleOnChangeInput = (event) => {
     setInputText(event.target.value);
     setOutputText(
-      `${inputText.split(" ").filter((e)=>{return e.length!==0}).length} Words and ${
-        inputText.length + 1
-      } Characters.\n${(0.008 * inputText.split(" ").filter((e)=>{return e.length!==0}).length).toFixed(
+      `${inputText.split(/\s+/).filter((e)=>{return e.length!==0}).length} Words and ${
+        inputText.length
+      } Characters.\n${(0.008 * inputText.split(/\s+/).filter((e)=>{return e.length!==0}).length).toFixed(
         2
       )} Minutes to read.`
     );
@@ -89,10 +89,6 @@ export default function TextForm(props) {
         console.error("Fail to copy text: ", err);
       });
 
-    // Or We can do
-    // var text = document.getElementById('exampleFormControlTextarea2');
-    // text.select();
-    // navigator.clipboard.writeText(text.value);
   };
   const handleEmailExtractClick = () => {
     focusAlert();

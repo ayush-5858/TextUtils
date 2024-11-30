@@ -6,15 +6,13 @@
 body{
   text-align: justify;
 }
+
 /* CSS for the placeholder color */
 .custom-placeholder-light::placeholder {
   color: gray;
-  /* Light mode placeholder text color */
 }
-
 .custom-placeholder-dark::placeholder {
   color: #302929;
-  /* Dark mode placeholder text color */;
 }
 
 .col{
@@ -22,10 +20,13 @@ body{
   margin: 0px;
   padding: 0px;
 }
-.colPallet{
-  height: 30px;
-  width: 30px;
-  cursor: pointer;
+
+.accordion-button.light::after {
+  filter: invert(0);
+}
+
+.accordion-button.dark::after {
+  filter: invert(1);
 }
 
 @media only screen and (max-width: 1024px) {

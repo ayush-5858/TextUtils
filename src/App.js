@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import TextForm from "./components/TextForm";
 import Alert from "./components/Alert";
 import MyPopup from "./components/MyPopup";
-import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { jsPDF } from "jspdf";
 
 function App() {
@@ -37,13 +37,6 @@ function App() {
     }
   };
 
-  setInterval(() => {
-    document.title = "TextUtils is Amazing";
-  }, 2000);
-  setInterval(() => {
-    document.title = "Install TextUtils Now";
-  }, 1500);
-
   // Function for Download button
   const handleDownload = () => {
     const doc = new jsPDF();
@@ -57,15 +50,16 @@ function App() {
     // Add underline to the heading
     doc.setDrawColor(0, 0, 0); // Black color
     doc.line(89, 22, 122, 22); // Draw a line (x1, y1, x2, y2)
-    
+
     // Add content to the PDF
     doc.setFontSize(14); // Set font size for content
     doc.setFont("helvetica", "normal"); // Use normal font
     doc.setTextColor(0, 0, 0); // Set text color to red (RGB)
-    const content = "Not deploying yet, budget is a bit tight, So SORRY!! You keep showing support like this, I will deploy soon :)";
+    const content =
+      "Not deploying yet, budget is a bit tight, So SORRY!! You keep showing support like this, I will deploy soon :)";
     const lines = doc.splitTextToSize(content, 180); // Wrap text to fit within 180mm width
     doc.text(lines, 10, 40);
-    
+
     // Add footer
     doc.setTextColor(255, 0, 0); // Set text color to red (RGB)
     doc.setFontSize(10); // Smaller font size for footer
@@ -84,7 +78,10 @@ function App() {
   return (
     <>
       <Router>
-        <MyPopup recommendation="TextUtils is amazing. Download the app now!!" handleDownload={handleDownload} />
+        <MyPopup
+          recommendation="TextUtils is Amazing. Download the App now !!"
+          handleDownload={handleDownload}
+        />
         <Navbar
           title="TextUtils"
           mode={darkMode}
@@ -94,17 +91,17 @@ function App() {
         />
         <Alert alert={alert} />
         <Routes>
-          <Route exact path="/about" element={<About mode={darkMode} />} />
           <Route
-            exact path="/"
+            path="/"
             element={
               <TextForm
                 showAlert={showAlert}
-                heading="Enter the text below to analyze TextUtils"
+                heading="Try TextUtils- Word & Character counter, Email & Phone No. extractor, Remove extra spaces, Capitalized & Smaller text."
                 mode={darkMode}
               />
             }
           />
+          <Route path="/about" element={<About mode={darkMode} />} />
         </Routes>
       </Router>
     </>

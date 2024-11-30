@@ -239,7 +239,14 @@ export default function About(props) {
           className="text-center p-3"
           style={{ backgroundColor: "rgba(0, 0, 0, 0.05)" }}
         >
-          <p style={{ color: props.mode === "light" ? "black" : "white", marginBottom: "0px" }}>© 2024 Copyright</p>
+          <p
+            style={{
+              color: props.mode === "light" ? "black" : "white",
+              marginBottom: "0px",
+            }}
+          >
+            © 2024 Copyright
+          </p>
           <p className="text-body m-0">
             Design and Maintained by <strong>Ayush Rathi</strong>
           </p>

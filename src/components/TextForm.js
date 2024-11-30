@@ -9,9 +9,9 @@ export default function TextForm(props) {
   const handleOnChangeInput = (event) => {
     setInputText(event.target.value);
     setOutputText(
-      `${inputText.split(" ").length} Words and ${
+      `${inputText.split(" ").filter((e)=>{return e.length!==0}).length} Words and ${
         inputText.length + 1
-      } Characters.\n${(0.008 * inputText.split(" ").length).toFixed(
+      } Characters.\n${(0.008 * inputText.split(" ").filter((e)=>{return e.length!==0}).length).toFixed(
         2
       )} Minutes to read.`
     );
@@ -126,7 +126,7 @@ export default function TextForm(props) {
   return (
     <>
       <div
-        className="container my-3"
+        className="container"
         style={{ color: props.mode === "light" ? "black" : "white" }}
       >
         <h1 className="font">{props.heading}</h1>

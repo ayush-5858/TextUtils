@@ -1,25 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 export default function Navbar(props) {
+  // State to control the navbar toggle
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // Function to handle toggle button click
+  const handleToggle = () => {
+    setIsExpanded(!isExpanded);
+  };
+
+  // Function to collapse the navbar
+  const handleCollapse = () => {
+    setIsExpanded(false);
+  };
+
   const handleSearch = (event) => {
     event.preventDefault(); // Prevents page reload
     const searchQuery = event.target.search.value; // Gets the search input value
     if (searchQuery.trim().length === 0) {
-      props.showAlert("Enter something to search.","warning");
-    }
-    else{
-      props.showAlert(`No such content related to "${searchQuery}" is found!!`,"warning");
+      props.showAlert("Enter something to search.", "warning");
+    } else {
+      props.showAlert(
+        `No such content related to "${searchQuery}" is found!!`,
+        "warning"
+      );
+      event.target.search.value = "";
     }
   };
   return (
     <nav
       className="navbar navbar-expand-lg bg-body-tertiary"
       data-bs-theme={props.mode}
+      id="alert-message"
     >
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand" to="/" onClick={handleCollapse}>
           {props.title}
         </Link>
         <button
@@ -28,20 +45,29 @@ export default function Navbar(props) {
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"
           aria-controls="navbarSupportedContent"
-          aria-expanded="false"
+          aria-expanded={isExpanded}
           aria-label="Toggle navigation"
+          onClick={handleToggle}
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+        <div
+          className={`collapse navbar-collapse ${isExpanded ? "show" : ""}`}
+          id="navbarSupportedContent"
+        >
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">
+              <Link
+                className="nav-link active"
+                to="/"
+                aria-current="page"
+                onClick={handleCollapse}
+              >
                 Home
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">
+              <Link className="nav-link" to="/about" onClick={handleCollapse}>
                 About
               </Link>
             </li>
@@ -52,7 +78,10 @@ export default function Navbar(props) {
               type="checkbox"
               role="switch"
               id="flexSwitchCheckDefault"
-              onClick={props.toggleMode}
+              onClick={() => {
+                props.toggleMode();
+                handleCollapse();
+              }}
             />
             <label
               className={`form-check-label text-${

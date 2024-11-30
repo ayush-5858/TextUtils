@@ -55,7 +55,7 @@ export default function MyPopup(props) {
               >
                 Close
               </button>
-              <button type="button" className="btn btn-primary">
+              <button type="button" className="btn btn-primary" onClick={props.handleDownload}>
                 Download
               </button>
             </div>

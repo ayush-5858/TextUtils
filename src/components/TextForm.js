@@ -19,34 +19,44 @@ export default function TextForm(props) {
   const handleOnChangeOutput = () => {
     return null;
   };
-  const validateInput = (input, showAlert) => {
+  const validateInput = (input, showAlert, name) => {
     if (input.trim().length === 0) {
-      showAlert("Please enter something in the input!", "warning");
+      showAlert(`Please enter something in the input ${name}`, "warning");
       return false; // Input is invalid
     }
     return true; // Input is valid
   };
+  const focusAlert = () => {
+    const alertElement = document.getElementById("alert-message");
+    if (alertElement) {
+      alertElement.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   const handleUpClick = () => {
-    if (!validateInput(inputText, props.showAlert)) return;
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to perform upper case.")) return;
     let UpperText = inputText.toUpperCase();
     setOutputText(UpperText);
     props.showAlert("Text has been successfully uppercased.", "success");
   };
   const handleLoClick = () => {
-    if (!validateInput(inputText, props.showAlert)) return;
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to perform lower case.")) return;
     let LowerText = inputText.toLowerCase();
     setOutputText(LowerText);
     props.showAlert("Text has been successfully lowercased.", "success");
   };
   const handleLengthClick = () => {
-    if (!validateInput(inputText, props.showAlert)) return;
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to find Length.")) return;
     let LengthOfText = inputText.length;
     setOutputText(`Lenght of the String is ${LengthOfText}`);
     props.showAlert("Text length has been measured successfully.", "success");
   };
   const handleTrimClick = () => {
-    if (!validateInput(inputText, props.showAlert)) return;
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to remove extra spaces.")) return;
     // Regular Expression concept in JS is used
     let extraSpace = inputText.split(/[ ]+/);
     setOutputText(extraSpace.join(" ").trim());
@@ -56,7 +66,8 @@ export default function TextForm(props) {
     );
   };
   const handleClearClick = () => {
-    if (!validateInput(inputText, props.showAlert) && outputText.length === 0) {
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to perform clear text.") && outputText.length === 0) {
       return;
     } else {
       let inputtext = "";
@@ -66,7 +77,8 @@ export default function TextForm(props) {
     }
   };
   const handleCopyClick = () => {
-    if (!validateInput(inputText, props.showAlert)) return;
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to perform copy text.")) return;
     navigator.clipboard
       .writeText(outputText)
       .then(() => {
@@ -83,7 +95,8 @@ export default function TextForm(props) {
     // navigator.clipboard.writeText(text.value);
   };
   const handleEmailExtractClick = () => {
-    if (!validateInput(inputText, props.showAlert)) return;
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to find emails.")) return;
     const emailRegex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/g;
     const extractedEmails = inputText.match(emailRegex);
     if (!extractedEmails) {
@@ -95,7 +108,8 @@ export default function TextForm(props) {
     }
   };
   const handlePhoneExtractClick = () => {
-    if (!validateInput(inputText, props.showAlert)) return;
+    focusAlert();
+    if (!validateInput(inputText, props.showAlert, "to find phone number.")) return;
     const phoneRegex = /\b\d{10}\b/g;
     const extractedNumbers = inputText.match(phoneRegex);
     if (!extractedNumbers) {
@@ -197,8 +211,7 @@ export default function TextForm(props) {
                 Convert to LowerCase
               </button>
             </div>
-           
-           
+
             <div className="col">
               <button
                 className="btn btn-primary mx-2 my-1"
@@ -215,7 +228,7 @@ export default function TextForm(props) {
                 Phone No. Extractor
               </button>
             </div>
-            
+
             <div className="col">
               <button
                 className="btn btn-primary mx-2 my-1"
